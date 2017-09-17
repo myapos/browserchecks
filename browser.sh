@@ -27,18 +27,12 @@ makeAndKillBrowsers() {
   #  if echo $BROWSER | grep "[/chrome/]"; then
   if [[ "$BROWSER" =~ chrome ]]; then
      "google-$BROWSER" $BROWSER_OPTIONS_CHROME $SITE &
-     echo "waiting $DELAY seconds"
-     sleep $DELAY
      getAndKillRunningBrowserPids
   elif [[ "$BROWSER" =~ firefox ]]; then
       $BROWSER $BROWSER_OPTIONS_FIREFOX $SITE &
-      echo "waiting $DELAY seconds"
-      sleep $DELAY
       getAndKillRunningBrowserPids
   elif [[ "$BROWSER" =~ chromium ]]; then
       "$BROWSER-browser" $BROWSER_OPTIONS_CHROMIUM $SITE &
-      echo "waiting $DELAY seconds"
-      sleep $DELAY
       getAndKillRunningBrowserPids
   else
     echo "Please give right arguments. Available options are chrome, chromium, firefox."
@@ -46,6 +40,9 @@ makeAndKillBrowsers() {
 }
 
 getAndKillRunningBrowserPids() {
+  echo "waiting $DELAY seconds"
+  sleep $DELAY
+  
   echo "preparing to kill all browser $BROWSER processes"
   if [[ "$BROWSER" =~ chrome ]]; then
      NEEDLE="chrome"
@@ -57,8 +54,9 @@ getAndKillRunningBrowserPids() {
 
   for i in $(pgrep $NEEDLE)
   do
-    echo "killing now process $i....."
-    kill -9 $i
+    echo "Killing $i"
+    kill $i 
+    wait $i 2> /dev/null
   done
 }
 
