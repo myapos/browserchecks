@@ -11,10 +11,10 @@ BROWSER=$1
 SITE=$2
 
 BROWSER_OPTIONS_FIREFOX='-private-window -headless'
-BROWSER_OPTIONS_CHROME='--incognito'
+BROWSER_OPTIONS_CHROME='--headless --remote-debugging-port=9222 --disable-gpu --incognito'
 BROWSER_OPTIONS_CHROMIUM='--incognito'
 #BROWSER_OPTIONS='-headless'
-DELAY=5
+DELAY=3
 
 makeAndKillBrowsers() {
   echo "running in $BROWSER mode"
