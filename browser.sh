@@ -8,7 +8,6 @@
 #third argument is the number of browsers
 #fourth argument is delay in seconds
 
-#BROWSER='firefox'
 BROWSER=$1
 SITE=$2
 NUMOFBROWSERS=$3
@@ -17,14 +16,10 @@ DELAY=$4
 BROWSER_OPTIONS_FIREFOX='-private-window -headless'
 BROWSER_OPTIONS_CHROME='--headless --remote-debugging-port=9222 --disable-gpu --incognito'
 BROWSER_OPTIONS_CHROMIUM='--incognito'
-#BROWSER_OPTIONS='-headless'
 
 makeAndKillBrowsers() {
   echo "running in $BROWSER mode"
 
-  #if [ "$BROWSER" = "chrome" ]; then
-  #[[ "$date" =~ "[0-9]\{8\}" ]];
-  #  if echo $BROWSER | grep "[/chrome/]"; then
   if [[ "$BROWSER" =~ chrome ]]; then
      "google-$BROWSER" $BROWSER_OPTIONS_CHROME $SITE &
      getAndKillRunningBrowserPids
