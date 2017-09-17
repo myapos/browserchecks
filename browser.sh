@@ -5,16 +5,19 @@
 #CLI arguments 
 #first argument is browser to run page visit ex. chrome, firefox
 #second argument is the page to visit
+#third argument is the number of browsers
+#fourth argument is delay in seconds
 
 #BROWSER='firefox'
 BROWSER=$1
 SITE=$2
+NUMOFBROWSERS=$3
+DELAY=$4
 
 BROWSER_OPTIONS_FIREFOX='-private-window -headless'
 BROWSER_OPTIONS_CHROME='--headless --remote-debugging-port=9222 --disable-gpu --incognito'
 BROWSER_OPTIONS_CHROMIUM='--incognito'
 #BROWSER_OPTIONS='-headless'
-DELAY=3
 
 makeAndKillBrowsers() {
   echo "running in $BROWSER mode"
@@ -59,7 +62,7 @@ getAndKillRunningBrowserPids() {
   done
 }
 
-for i in $(seq 1 2)
+for i in $(seq 1 $NUMOFBROWSERS)
 do
   echo "opening browser $i"
   makeAndKillBrowsers
