@@ -64,7 +64,7 @@ getAndKillRunningBrowserPids() {
 
 for i in $(seq 1 $NUMOFBROWSERS)
 do
-  echo "opening browser $NUMOFBROWSERS"
+  echo "opening browser $i"
   makeAndKillBrowsers
 done
 echo "done"
