@@ -5,6 +5,8 @@
 #CLI arguments 
 #first argument is browser to run page visit ex. chrome, firefox
 #second argument is the page to visit
+#third argument is the number of browsers
+#fourth argument is delay in seconds
 
 #BROWSER='firefox'
 BROWSER=$1
